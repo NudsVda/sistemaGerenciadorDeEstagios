@@ -1,0 +1,97 @@
+Estagio:
+    type: entity
+    table: estagio
+    indexes:
+        fk_estagio_estagiario1_idx:
+            columns:
+                - estagiario_id
+        fk_estagio_empresa1_idx:
+            columns:
+                - empresa_id
+        fk_estagio_pessoa1_idx:
+            columns:
+                - orientador_id
+        fk_estagio_pessoa2_idx:
+            columns:
+                - superior_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        remuneracao:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            comment: ''
+        cargaHoraria:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: carga_horaria
+        inicio:
+            type: date
+            nullable: false
+            comment: ''
+        final:
+            type: date
+            nullable: false
+            comment: ''
+        status:
+            type: string
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            default: Andamento
+        horario:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+    manyToOne:
+        empresa:
+            targetEntity: Empresa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                empresa_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        estagiario:
+            targetEntity: Estagiario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                estagiario_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        orientador:
+            targetEntity: Pessoa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                orientador_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        superior:
+            targetEntity: Pessoa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                superior_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

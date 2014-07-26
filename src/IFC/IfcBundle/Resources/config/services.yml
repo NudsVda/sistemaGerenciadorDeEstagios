@@ -1,0 +1,7 @@
+parameters:
+#    ifc_ifc.example.class: IFC\IfcBundle\Example
+
+services:
+#    ifc_ifc.example:
+#        class: %ifc_ifc.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

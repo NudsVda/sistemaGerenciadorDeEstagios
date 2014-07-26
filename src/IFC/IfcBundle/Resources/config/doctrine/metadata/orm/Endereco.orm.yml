@@ -1,0 +1,49 @@
+Endereco:
+    type: entity
+    table: endereco
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        uf:
+            type: string
+            nullable: false
+            length: 2
+            fixed: true
+            comment: ''
+        cep:
+            type: string
+            nullable: false
+            length: 8
+            fixed: true
+            comment: ''
+        rua:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        cidade:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        numero:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        complemento:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

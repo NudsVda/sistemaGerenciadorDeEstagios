@@ -1,0 +1,119 @@
+Estagiario:
+    type: entity
+    table: estagiario
+    indexes:
+        fk_estagiario_endereco1_idx:
+            columns:
+                - endereco_id
+        fk_estagiario_pessoa1_idx:
+            columns:
+                - pai_id
+        fk_estagiario_pessoa2_idx:
+            columns:
+                - mae_id
+        fk_estagiario_curso1_idx:
+            columns:
+                - curso_id
+        fk_estagiario_pessoa3_idx:
+            columns:
+                - pessoa_id
+        fk_estagiario_contato1_idx:
+            columns:
+                - contato_id
+        fk_estagiario_empresa1_idx:
+            columns:
+                - empresa_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        disponibilidade:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+        horarioTrabalha:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            comment: ''
+            column: horario_trabalha
+        matricula:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            comment: ''
+    manyToOne:
+        contato:
+            targetEntity: Contato
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contato_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        curso:
+            targetEntity: Curso
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                curso_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        empresa:
+            targetEntity: Empresa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                empresa_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        endereco:
+            targetEntity: Endereco
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                endereco_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        pai:
+            targetEntity: Pessoa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pai_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        mae:
+            targetEntity: Pessoa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mae_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        pessoa:
+            targetEntity: Pessoa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pessoa_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

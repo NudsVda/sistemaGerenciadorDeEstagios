@@ -1,0 +1,103 @@
+Empresa:
+    type: entity
+    table: empresa
+    indexes:
+        fk_empresa_area_atuacao_idx:
+            columns:
+                - area_atuacao_id
+        fk_empresa_pessoa1_idx:
+            columns:
+                - pessoa_id
+        fk_empresa_endereco1_idx:
+            columns:
+                - endereco_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nome:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        cnpj:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        observacao:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+    manyToOne:
+        areaAtuacao:
+            targetEntity: AreaAtuacao
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                area_atuacao_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        endereco:
+            targetEntity: Endereco
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                endereco_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        pessoa:
+            targetEntity: Pessoa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pessoa_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        contato:
+            targetEntity: Contato
+            cascade: {  }
+            mappedBy: null
+            inversedBy: empresa
+            joinTable:
+                name: empresa_has_contato
+                joinColumns:
+                    -
+                        name: empresa_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: contato_id
+                        referencedColumnName: id
+            orderBy: null
+        socio:
+            targetEntity: Pessoa
+            cascade: {  }
+            mappedBy: null
+            inversedBy: empresa
+            joinTable:
+                name: empresa_has_socio
+                joinColumns:
+                    -
+                        name: empresa_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: socio_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

@@ -1,0 +1,51 @@
+Pessoa:
+    type: entity
+    table: pessoa
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nome:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        rg:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        cpf:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        dataNascimento:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: data_nascimento
+        formacao:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            comment: ''
+    manyToMany:
+        empresa:
+            targetEntity: Empresa
+            cascade: {  }
+            mappedBy: socio
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

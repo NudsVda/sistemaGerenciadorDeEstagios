@@ -1,0 +1,3 @@
+ifc_ifc_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: IFCIfcBundle:Default:index }

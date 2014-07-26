@@ -1,0 +1,73 @@
+services:
+    sonata.admin.post:
+        class: IFC\IfcBundle\Admin\EstagiarioAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Post" }
+        arguments:
+            - ~
+            - Acme\DemoBundle\Entity\Post
+            - ~
+        calls:
+            - [ setTranslationDomain, [AcmeDemoBundle]]
+
+    sonata.admin.Contato:
+        class: IFC\IfcBundle\Admin\ContatoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Contato" }
+        arguments:
+            - ~
+            - IFC\IfcBundle\Entity\Contato
+            - ~
+    sonata.admin.Empresa:
+        class: IFC\IfcBundle\Admin\EmpresaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Empresa" }
+        arguments:
+            - ~
+            - IFC\IfcBundle\Entity\Empresa
+            - ~
+    sonata.admin.curso:
+        class: IFC\IfcBundle\Admin\CursoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Curso" }
+        arguments:
+            - ~
+            - IFC\IfcBundle\Entity\Curso
+            - ~
+
+    sonata.admin.modadlidade:
+        class: IFC\IfcBundle\Admin\ModalidadeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Modalidade" }
+        arguments:
+            - ~
+            - IFC\IfcBundle\Entity\Modalidade
+            - ~
+
+    sonata.admin.areaAtuacao:
+        class: IFC\IfcBundle\Admin\AreaAtuacaoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Area atuacao" }
+        arguments:
+            - ~
+            - IFC\IfcBundle\Entity\AreaAtuacao
+            - ~
+
+    sonata.admin.endereco:
+        class: IFC\IfcBundle\Admin\EnderecoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Endereco" }
+        arguments:
+            - ~
+            - IFC\IfcBundle\Entity\Endereco
+            - ~
+    sonata.admin.pessoa:
+        class: IFC\IfcBundle\Admin\PessoaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Pessoa" }
+        arguments:
+            - ~
+            - IFC\IfcBundle\Entity\Pessoa
+            - ~
+        calls:
+            - [ setTranslationDomain, [AcmeDemoBundle]]
