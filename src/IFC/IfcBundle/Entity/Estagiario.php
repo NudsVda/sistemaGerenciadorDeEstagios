@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Estagiario
  *
- * @ORM\Table(name="estagiario", indexes={@ORM\Index(name="fk_estagiario_endereco1_idx", columns={"endereco_id"}), @ORM\Index(name="fk_estagiario_pessoa1_idx", columns={"pai_id"}), @ORM\Index(name="fk_estagiario_pessoa2_idx", columns={"mae_id"}), @ORM\Index(name="fk_estagiario_curso1_idx", columns={"curso_id"}), @ORM\Index(name="fk_estagiario_pessoa3_idx", columns={"pessoa_id"}), @ORM\Index(name="fk_estagiario_contato1_idx", columns={"contato_id"}), @ORM\Index(name="fk_estagiario_empresa1_idx", columns={"empresa_id"})})
+ * @ORM\Table(name="estagiario", indexes={@ORM\Index(name="fk_estagiario_endereco1_idx", columns={"endereco_id"}), @ORM\Index(name="fk_estagiario_pessoa1_idx", columns={"pai_id"}), @ORM\Index(name="fk_estagiario_pessoa2_idx", columns={"mae_id"}), @ORM\Index(name="fk_estagiario_curso1_idx", columns={"curso_id"}), @ORM\Index(name="fk_estagiario_pessoa3_idx", columns={"pessoa_id"}), @ORM\Index(name="fk_estagiario_empresa1_idx", columns={"empresa_id"})})
  * @ORM\Entity
  */
 class Estagiario
@@ -41,16 +41,6 @@ class Estagiario
      * @ORM\Column(name="matricula", type="string", length=45, nullable=true)
      */
     private $matricula;
-
-    /**
-     * @var \Contato
-     *
-     * @ORM\ManyToOne(targetEntity="Contato")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="contato_id", referencedColumnName="id")
-     * })
-     */
-    private $contato;
 
     /**
      * @var \Curso
@@ -112,6 +102,28 @@ class Estagiario
      */
     private $pessoa;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Contato", inversedBy="estagiario")
+     * @ORM\JoinTable(name="estagiario_has_contato",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="estagiario_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="contato_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $contato;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->contato = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -191,29 +203,6 @@ class Estagiario
     public function getMatricula()
     {
         return $this->matricula;
-    }
-
-    /**
-     * Set contato
-     *
-     * @param \IFC\IfcBundle\Entity\Contato $contato
-     * @return Estagiario
-     */
-    public function setContato(\IFC\IfcBundle\Entity\Contato $contato = null)
-    {
-        $this->contato = $contato;
-
-        return $this;
-    }
-
-    /**
-     * Get contato
-     *
-     * @return \IFC\IfcBundle\Entity\Contato 
-     */
-    public function getContato()
-    {
-        return $this->contato;
     }
 
     /**
@@ -352,5 +341,38 @@ class Estagiario
     public function getPessoa()
     {
         return $this->pessoa;
+    }
+
+    /**
+     * Add contato
+     *
+     * @param \IFC\IfcBundle\Entity\Contato $contato
+     * @return Estagiario
+     */
+    public function addContato(\IFC\IfcBundle\Entity\Contato $contato)
+    {
+        $this->contato[] = $contato;
+
+        return $this;
+    }
+
+    /**
+     * Remove contato
+     *
+     * @param \IFC\IfcBundle\Entity\Contato $contato
+     */
+    public function removeContato(\IFC\IfcBundle\Entity\Contato $contato)
+    {
+        $this->contato->removeElement($contato);
+    }
+
+    /**
+     * Get contato
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getContato()
+    {
+        return $this->contato;
     }
 }

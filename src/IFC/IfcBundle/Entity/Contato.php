@@ -43,11 +43,27 @@ class Contato
     private $empresa;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Estagiario", mappedBy="contato")
+     */
+    private $estagiario;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Pessoa", mappedBy="contato")
+     */
+    private $pessoa;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->empresa = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->estagiario = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pessoa = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -138,5 +154,71 @@ class Contato
     public function getEmpresa()
     {
         return $this->empresa;
+    }
+
+    /**
+     * Add estagiario
+     *
+     * @param \IFC\IfcBundle\Entity\Estagiario $estagiario
+     * @return Contato
+     */
+    public function addEstagiario(\IFC\IfcBundle\Entity\Estagiario $estagiario)
+    {
+        $this->estagiario[] = $estagiario;
+
+        return $this;
+    }
+
+    /**
+     * Remove estagiario
+     *
+     * @param \IFC\IfcBundle\Entity\Estagiario $estagiario
+     */
+    public function removeEstagiario(\IFC\IfcBundle\Entity\Estagiario $estagiario)
+    {
+        $this->estagiario->removeElement($estagiario);
+    }
+
+    /**
+     * Get estagiario
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEstagiario()
+    {
+        return $this->estagiario;
+    }
+
+    /**
+     * Add pessoa
+     *
+     * @param \IFC\IfcBundle\Entity\Pessoa $pessoa
+     * @return Contato
+     */
+    public function addPessoa(\IFC\IfcBundle\Entity\Pessoa $pessoa)
+    {
+        $this->pessoa[] = $pessoa;
+
+        return $this;
+    }
+
+    /**
+     * Remove pessoa
+     *
+     * @param \IFC\IfcBundle\Entity\Pessoa $pessoa
+     */
+    public function removePessoa(\IFC\IfcBundle\Entity\Pessoa $pessoa)
+    {
+        $this->pessoa->removeElement($pessoa);
+    }
+
+    /**
+     * Get pessoa
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPessoa()
+    {
+        return $this->pessoa;
     }
 }

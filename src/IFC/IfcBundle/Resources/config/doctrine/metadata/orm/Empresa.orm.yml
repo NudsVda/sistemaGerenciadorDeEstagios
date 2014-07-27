@@ -5,9 +5,6 @@ Empresa:
         fk_empresa_area_atuacao_idx:
             columns:
                 - area_atuacao_id
-        fk_empresa_pessoa1_idx:
-            columns:
-                - pessoa_id
         fk_empresa_endereco1_idx:
             columns:
                 - endereco_id
@@ -58,15 +55,6 @@ Empresa:
                 endereco_id:
                     referencedColumnName: id
             orphanRemoval: false
-        pessoa:
-            targetEntity: Pessoa
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                pessoa_id:
-                    referencedColumnName: id
-            orphanRemoval: false
     manyToMany:
         contato:
             targetEntity: Contato
@@ -84,7 +72,7 @@ Empresa:
                         name: contato_id
                         referencedColumnName: id
             orderBy: null
-        socio:
+        pessoa:
             targetEntity: Pessoa
             cascade: {  }
             mappedBy: null
@@ -97,7 +85,7 @@ Empresa:
                         referencedColumnName: id
                 inverseJoinColumns:
                     -
-                        name: socio_id
+                        name: pessoa_id
                         referencedColumnName: id
             orderBy: null
     lifecycleCallbacks: {  }

@@ -52,7 +52,7 @@ class Estagio
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", nullable=false)
+     * @ORM\Column(name="status", type="string", length=45, nullable=false)
      */
     private $status = 'Andamento';
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Empresa
  *
- * @ORM\Table(name="empresa", indexes={@ORM\Index(name="fk_empresa_area_atuacao_idx", columns={"area_atuacao_id"}), @ORM\Index(name="fk_empresa_pessoa1_idx", columns={"pessoa_id"}), @ORM\Index(name="fk_empresa_endereco1_idx", columns={"endereco_id"})})
+ * @ORM\Table(name="empresa", indexes={@ORM\Index(name="fk_empresa_area_atuacao_idx", columns={"area_atuacao_id"}), @ORM\Index(name="fk_empresa_endereco1_idx", columns={"endereco_id"})})
  * @ORM\Entity
  */
 class Empresa
@@ -63,16 +63,6 @@ class Empresa
     private $endereco;
 
     /**
-     * @var \Pessoa
-     *
-     * @ORM\ManyToOne(targetEntity="Pessoa")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="pessoa_id", referencedColumnName="id")
-     * })
-     */
-    private $pessoa;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Contato", inversedBy="empresa")
@@ -96,11 +86,11 @@ class Empresa
      *     @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="socio_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="pessoa_id", referencedColumnName="id")
      *   }
      * )
      */
-    private $socio;
+    private $pessoa;
 
     /**
      * Constructor
@@ -108,7 +98,7 @@ class Empresa
     public function __construct()
     {
         $this->contato = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->socio = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pessoa = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -238,29 +228,6 @@ class Empresa
     }
 
     /**
-     * Set pessoa
-     *
-     * @param \IFC\IfcBundle\Entity\Pessoa $pessoa
-     * @return Empresa
-     */
-    public function setPessoa(\IFC\IfcBundle\Entity\Pessoa $pessoa = null)
-    {
-        $this->pessoa = $pessoa;
-
-        return $this;
-    }
-
-    /**
-     * Get pessoa
-     *
-     * @return \IFC\IfcBundle\Entity\Pessoa 
-     */
-    public function getPessoa()
-    {
-        return $this->pessoa;
-    }
-
-    /**
      * Add contato
      *
      * @param \IFC\IfcBundle\Entity\Contato $contato
@@ -294,35 +261,35 @@ class Empresa
     }
 
     /**
-     * Add socio
+     * Add pessoa
      *
-     * @param \IFC\IfcBundle\Entity\Pessoa $socio
+     * @param \IFC\IfcBundle\Entity\Pessoa $pessoa
      * @return Empresa
      */
-    public function addSocio(\IFC\IfcBundle\Entity\Pessoa $socio)
+    public function addPessoa(\IFC\IfcBundle\Entity\Pessoa $pessoa)
     {
-        $this->socio[] = $socio;
+        $this->pessoa[] = $pessoa;
 
         return $this;
     }
 
     /**
-     * Remove socio
+     * Remove pessoa
      *
-     * @param \IFC\IfcBundle\Entity\Pessoa $socio
+     * @param \IFC\IfcBundle\Entity\Pessoa $pessoa
      */
-    public function removeSocio(\IFC\IfcBundle\Entity\Pessoa $socio)
+    public function removePessoa(\IFC\IfcBundle\Entity\Pessoa $pessoa)
     {
-        $this->socio->removeElement($socio);
+        $this->pessoa->removeElement($pessoa);
     }
 
     /**
-     * Get socio
+     * Get pessoa
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getSocio()
+    public function getPessoa()
     {
-        return $this->socio;
+        return $this->pessoa;
     }
 }

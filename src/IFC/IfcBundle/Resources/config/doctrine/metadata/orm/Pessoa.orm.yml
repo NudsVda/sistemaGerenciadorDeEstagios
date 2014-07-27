@@ -1,6 +1,10 @@
 Pessoa:
     type: entity
     table: pessoa
+    indexes:
+        fk_pessoa_endereco1_idx:
+            columns:
+                - endereco_id
     id:
         id:
             type: integer
@@ -40,12 +44,38 @@ Pessoa:
             length: 45
             fixed: false
             comment: ''
+    manyToOne:
+        endereco:
+            targetEntity: Endereco
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                endereco_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     manyToMany:
         empresa:
             targetEntity: Empresa
             cascade: {  }
-            mappedBy: socio
+            mappedBy: pessoa
             inversedBy: null
             joinTable: null
+            orderBy: null
+        contato:
+            targetEntity: Contato
+            cascade: {  }
+            mappedBy: null
+            inversedBy: pessoa
+            joinTable:
+                name: pessoa_has_contato
+                joinColumns:
+                    -
+                        name: pessoa_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: contato_id
+                        referencedColumnName: id
             orderBy: null
     lifecycleCallbacks: {  }

@@ -18,9 +18,35 @@ class EstagiarioAdmin extends Admin{
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text', array('label' => 'Post Title'))
-            ->add('author', 'entity', array('class' => 'Acme\DemoBundle\Entity\User'))
-            ->add('body') //if no type is specified, SonataAdminBundle tries to guess it
+            ->add('pessoa','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'property'=>'nome',
+            ))
+            ->add('endereco','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Endereco',
+                'property'=>'rua',
+            ))
+            ->add('pai','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'property'=>'nome',
+            ))
+            ->add('mae','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'property'=>'nome',
+            ))
+            ->add('curso','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Curso',
+                'property'=>'nome',
+            ))
+            ->add('disponibilidade')
+            ->add('horarioTrabalha')
+            ->add('matricula')
+            ->add('contato','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Contato',
+                'property'=>'telefone',
+                'multiple'=>true
+            ))
+
         ;
     }
 
@@ -28,8 +54,8 @@ class EstagiarioAdmin extends Admin{
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('author')
+            ->add('pessoa.nome')
+            ->add('matricula')
         ;
     }
 
@@ -37,9 +63,34 @@ class EstagiarioAdmin extends Admin{
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
-            ->add('slug')
-            ->add('author')
-        ;
+            ->add('pessoa','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'associated_property'=>'nome',
+            ))
+            ->add('endereco','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Endereco',
+                'associated_property'=>'rua',
+            ))
+            ->add('pai','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'associated_property'=>'nome',
+            ))
+            ->add('mae','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'associated_property'=>'nome',
+            ))
+            ->add('curso','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Curso',
+                'associated_property'=>'nome',
+            ))
+            ->add('disponibilidade')
+            ->add('horarioTrabalha')
+            ->add('matricula')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ));
     }
 }

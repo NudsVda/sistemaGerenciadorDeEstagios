@@ -17,8 +17,9 @@ class ContatoAdmin extends Admin{
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('email',NULL)
+            ->add('email',NULL,array('required'=>false))
             ->add('telefone')
+
         ;
     }
 
@@ -37,6 +38,7 @@ class ContatoAdmin extends Admin{
         $listMapper
             ->add('telefone')
             ->add('email')
+
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

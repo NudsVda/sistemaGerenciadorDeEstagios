@@ -18,6 +18,15 @@ class PessoaAdmin extends Admin
             ->add('cpf', 'text', array('label' => 'CPF'))
             ->add('data_nascimento', 'date', array('label' => 'Data nascimento'))
             ->add('formacao', 'text', array('label' => 'Formação'))
+            ->add('endereco','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Endereco',
+                'property'=>'rua'
+            ))
+            ->add('contato','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Contato',
+                'property'=>'telefone',
+                'multiple'=>true
+            ))
         ;
     }
 
@@ -36,6 +45,16 @@ class PessoaAdmin extends Admin
         $listMapper
             ->addIdentifier('nome')
             ->add('formacao')
-        ;
+            ->add('contato','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Contato',
+                'associated_property'=>'telefone',
+                'multiple'=>true
+            ))
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ));
     }
 }

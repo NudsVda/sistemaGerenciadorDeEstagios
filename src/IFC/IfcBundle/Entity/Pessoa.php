@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Pessoa
  *
- * @ORM\Table(name="pessoa")
+ * @ORM\Table(name="pessoa", indexes={@ORM\Index(name="fk_pessoa_endereco1_idx", columns={"endereco_id"})})
  * @ORM\Entity
  */
 class Pessoa
@@ -57,11 +57,36 @@ class Pessoa
     private $formacao;
 
     /**
+     * @var \Endereco
+     *
+     * @ORM\ManyToOne(targetEntity="Endereco")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="endereco_id", referencedColumnName="id")
+     * })
+     */
+    private $endereco;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Empresa", mappedBy="socio")
+     * @ORM\ManyToMany(targetEntity="Empresa", mappedBy="pessoa")
      */
     private $empresa;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Contato", inversedBy="pessoa")
+     * @ORM\JoinTable(name="pessoa_has_contato",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="pessoa_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="contato_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $contato;
 
     /**
      * Constructor
@@ -69,6 +94,7 @@ class Pessoa
     public function __construct()
     {
         $this->empresa = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->contato = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -198,6 +224,29 @@ class Pessoa
     }
 
     /**
+     * Set endereco
+     *
+     * @param \IFC\IfcBundle\Entity\Endereco $endereco
+     * @return Pessoa
+     */
+    public function setEndereco(\IFC\IfcBundle\Entity\Endereco $endereco = null)
+    {
+        $this->endereco = $endereco;
+
+        return $this;
+    }
+
+    /**
+     * Get endereco
+     *
+     * @return \IFC\IfcBundle\Entity\Endereco 
+     */
+    public function getEndereco()
+    {
+        return $this->endereco;
+    }
+
+    /**
      * Add empresa
      *
      * @param \IFC\IfcBundle\Entity\Empresa $empresa
@@ -228,5 +277,38 @@ class Pessoa
     public function getEmpresa()
     {
         return $this->empresa;
+    }
+
+    /**
+     * Add contato
+     *
+     * @param \IFC\IfcBundle\Entity\Contato $contato
+     * @return Pessoa
+     */
+    public function addContato(\IFC\IfcBundle\Entity\Contato $contato)
+    {
+        $this->contato[] = $contato;
+
+        return $this;
+    }
+
+    /**
+     * Remove contato
+     *
+     * @param \IFC\IfcBundle\Entity\Contato $contato
+     */
+    public function removeContato(\IFC\IfcBundle\Entity\Contato $contato)
+    {
+        $this->contato->removeElement($contato);
+    }
+
+    /**
+     * Get contato
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getContato()
+    {
+        return $this->contato;
     }
 }

@@ -17,9 +17,6 @@ Estagiario:
         fk_estagiario_pessoa3_idx:
             columns:
                 - pessoa_id
-        fk_estagiario_contato1_idx:
-            columns:
-                - contato_id
         fk_estagiario_empresa1_idx:
             columns:
                 - empresa_id
@@ -53,15 +50,6 @@ Estagiario:
             fixed: false
             comment: ''
     manyToOne:
-        contato:
-            targetEntity: Contato
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                contato_id:
-                    referencedColumnName: id
-            orphanRemoval: false
         curso:
             targetEntity: Curso
             cascade: {  }
@@ -116,4 +104,21 @@ Estagiario:
                 pessoa_id:
                     referencedColumnName: id
             orphanRemoval: false
+    manyToMany:
+        contato:
+            targetEntity: Contato
+            cascade: {  }
+            mappedBy: null
+            inversedBy: estagiario
+            joinTable:
+                name: estagiario_has_contato
+                joinColumns:
+                    -
+                        name: estagiario_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: contato_id
+                        referencedColumnName: id
+            orderBy: null
     lifecycleCallbacks: {  }

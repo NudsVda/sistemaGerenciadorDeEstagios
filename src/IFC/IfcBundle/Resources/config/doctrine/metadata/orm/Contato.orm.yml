@@ -31,4 +31,18 @@ Contato:
             inversedBy: null
             joinTable: null
             orderBy: null
+        estagiario:
+            targetEntity: Estagiario
+            cascade: {  }
+            mappedBy: contato
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        pessoa:
+            targetEntity: Pessoa
+            cascade: {  }
+            mappedBy: contato
+            inversedBy: null
+            joinTable: null
+            orderBy: null
     lifecycleCallbacks: {  }

@@ -23,13 +23,17 @@ class EmpresaAdmin extends Admin{
                 'class' => 'IFC\IfcBundle\Entity\AreaAtuacao',
                 'property'=>'nome'
             ))
+            ->add('pessoa','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'property'=>'nome',
+                'multiple'=>true,
+                'label'=>'socios'
+            ))
             ->add('contato','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Contato',
-                'property'=>'email',
+                'property'=>'telefone',
                 'multiple'=>true
             ))
-            //->add('')
-            //->add('')
             ->add('observacao')
 
         ;
@@ -39,8 +43,8 @@ class EmpresaAdmin extends Admin{
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            //->add('email')
-            //->add('telefone')
+            ->add('nome')
+            ->add('cnpj')
         ;
     }
 
@@ -51,9 +55,19 @@ class EmpresaAdmin extends Admin{
             ->add('nome')
             ->add('cnpj')
             ->add('areaAtuacao',NULL,array('associated_property'=>'nome'))
+            ->add('socio','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Socio',
+                'associated_property'=>'nome',
+                'multiple'=>true
+            ))
             ->add('pessoa',NULL,array('associated_property'=>'nome'))
             ->add('endereco',NULL,array('associated_property'=>'rua'))
             ->add('observacao')
+            ->add('contato','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Contato',
+                'associated_property'=>'telefone',
+                'multiple'=>true
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

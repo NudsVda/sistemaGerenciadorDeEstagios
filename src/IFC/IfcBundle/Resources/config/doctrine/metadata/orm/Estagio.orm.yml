@@ -47,7 +47,7 @@ Estagio:
         status:
             type: string
             nullable: false
-            length: null
+            length: 45
             fixed: false
             comment: ''
             default: Andamento
