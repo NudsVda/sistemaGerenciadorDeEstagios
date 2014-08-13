@@ -2,9 +2,6 @@ Estagiario:
     type: entity
     table: estagiario
     indexes:
-        fk_estagiario_endereco1_idx:
-            columns:
-                - endereco_id
         fk_estagiario_pessoa1_idx:
             columns:
                 - pai_id
@@ -17,9 +14,6 @@ Estagiario:
         fk_estagiario_pessoa3_idx:
             columns:
                 - pessoa_id
-        fk_estagiario_empresa1_idx:
-            columns:
-                - empresa_id
     id:
         id:
             type: integer
@@ -57,24 +51,6 @@ Estagiario:
             inversedBy: null
             joinColumns:
                 curso_id:
-                    referencedColumnName: id
-            orphanRemoval: false
-        empresa:
-            targetEntity: Empresa
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                empresa_id:
-                    referencedColumnName: id
-            orphanRemoval: false
-        endereco:
-            targetEntity: Endereco
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                endereco_id:
                     referencedColumnName: id
             orphanRemoval: false
         pai:

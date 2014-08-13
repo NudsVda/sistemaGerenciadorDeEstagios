@@ -21,24 +21,27 @@ class EstagioAdmin extends Admin
 
             ->add('estagiario','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Estagiario',
-                'property'=>'pessoa.name'
+                'property'=>'pessoa.nome',
+                'label'=>'Estagiario'
             ))
             ->add('empresa','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Empresa',
-                'property'=>'nome'
+                'property'=>'nome',
             ))
             ->add('orientador','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Pessoa',
-                'property'=>'nome'
+                'property'=>'nome',
+                'label'=>'Orientador'
             ))
             ->add('superior','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Pessoa',
-                'property'=>'nome'
+                'property'=>'nome',
+                'label'=>'Superior'
             ))
             ->add('remuneracao','number')
             ->add('carga_horaria','integer')
-            ->add('inicio','datetime')
-            ->add('final','datetime')
+            ->add('inicio','datetime',array('years'=>range(2011,2037)))
+            ->add('final','datetime',array('years'=>range(2011,2037)))
             ->add('status','text')
             ->add('horario','text')
         ;
@@ -77,7 +80,7 @@ class EstagioAdmin extends Admin
             ->add('carga_horaria')
             ->add('inicio')
             ->add('final')
-            ->add('status')
+            ->add('status',NULL,array("label"=>"Andamento"))
             ->add('horario')
             ->add('_action', 'actions', array(
                 'actions' => array(

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Estagiario
  *
- * @ORM\Table(name="estagiario", indexes={@ORM\Index(name="fk_estagiario_endereco1_idx", columns={"endereco_id"}), @ORM\Index(name="fk_estagiario_pessoa1_idx", columns={"pai_id"}), @ORM\Index(name="fk_estagiario_pessoa2_idx", columns={"mae_id"}), @ORM\Index(name="fk_estagiario_curso1_idx", columns={"curso_id"}), @ORM\Index(name="fk_estagiario_pessoa3_idx", columns={"pessoa_id"}), @ORM\Index(name="fk_estagiario_empresa1_idx", columns={"empresa_id"})})
+ * @ORM\Table(name="estagiario", indexes={@ORM\Index(name="fk_estagiario_pessoa1_idx", columns={"pai_id"}), @ORM\Index(name="fk_estagiario_pessoa2_idx", columns={"mae_id"}), @ORM\Index(name="fk_estagiario_curso1_idx", columns={"curso_id"}), @ORM\Index(name="fk_estagiario_pessoa3_idx", columns={"pessoa_id"})})
  * @ORM\Entity
  */
 class Estagiario
@@ -51,26 +51,6 @@ class Estagiario
      * })
      */
     private $curso;
-
-    /**
-     * @var \Empresa
-     *
-     * @ORM\ManyToOne(targetEntity="Empresa")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
-     * })
-     */
-    private $empresa;
-
-    /**
-     * @var \Endereco
-     *
-     * @ORM\ManyToOne(targetEntity="Endereco")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="endereco_id", referencedColumnName="id")
-     * })
-     */
-    private $endereco;
 
     /**
      * @var \Pessoa
@@ -226,52 +206,6 @@ class Estagiario
     public function getCurso()
     {
         return $this->curso;
-    }
-
-    /**
-     * Set empresa
-     *
-     * @param \IFC\IfcBundle\Entity\Empresa $empresa
-     * @return Estagiario
-     */
-    public function setEmpresa(\IFC\IfcBundle\Entity\Empresa $empresa = null)
-    {
-        $this->empresa = $empresa;
-
-        return $this;
-    }
-
-    /**
-     * Get empresa
-     *
-     * @return \IFC\IfcBundle\Entity\Empresa 
-     */
-    public function getEmpresa()
-    {
-        return $this->empresa;
-    }
-
-    /**
-     * Set endereco
-     *
-     * @param \IFC\IfcBundle\Entity\Endereco $endereco
-     * @return Estagiario
-     */
-    public function setEndereco(\IFC\IfcBundle\Entity\Endereco $endereco = null)
-    {
-        $this->endereco = $endereco;
-
-        return $this;
-    }
-
-    /**
-     * Get endereco
-     *
-     * @return \IFC\IfcBundle\Entity\Endereco 
-     */
-    public function getEndereco()
-    {
-        return $this->endereco;
     }
 
     /**

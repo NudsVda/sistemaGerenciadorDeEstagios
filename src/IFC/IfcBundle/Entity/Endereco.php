@@ -24,7 +24,7 @@ class Endereco
     /**
      * @var string
      *
-     * @ORM\Column(name="uf", type="string", length=2, nullable=false)
+     * @ORM\Column(name="uf", type="string", length=45, nullable=false)
      */
     private $uf;
 

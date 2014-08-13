@@ -34,6 +34,10 @@ class EmpresaAdmin extends Admin{
                 'property'=>'telefone',
                 'multiple'=>true
             ))
+            ->add('endereco','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Endereco',
+                'property'=>'rua'
+            ))
             ->add('observacao')
 
         ;
@@ -55,12 +59,12 @@ class EmpresaAdmin extends Admin{
             ->add('nome')
             ->add('cnpj')
             ->add('areaAtuacao',NULL,array('associated_property'=>'nome'))
-            ->add('socio','sonata_type_model',array(
-                'class' => 'IFC\IfcBundle\Entity\Socio',
+            ->add('pessoa','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
                 'associated_property'=>'nome',
-                'multiple'=>true
+                'multiple'=>true,
+                'label'=>'socios'
             ))
-            ->add('pessoa',NULL,array('associated_property'=>'nome'))
             ->add('endereco',NULL,array('associated_property'=>'rua'))
             ->add('observacao')
             ->add('contato','sonata_type_model',array(

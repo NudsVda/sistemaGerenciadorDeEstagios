@@ -14,7 +14,7 @@ Endereco:
         uf:
             type: string
             nullable: false
-            length: 2
+            length: 45
             fixed: true
             comment: ''
         cep:

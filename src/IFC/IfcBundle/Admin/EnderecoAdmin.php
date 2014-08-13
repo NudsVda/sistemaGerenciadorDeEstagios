@@ -15,10 +15,12 @@ class EnderecoAdmin extends Admin
         $formMapper
             ->add('uf', 'text', array('label' => 'Estado'))
             ->add('cep', 'text', array('label' => 'Cep'))
-            ->add('rua', 'text', array('label' => 'Rua'))
             ->add('cidade', 'text', array('label' => 'Cidade'))
+            ->add('rua', 'text', array('label' => 'Rua'))
             ->add('numero', 'integer', array('label' => 'Número'))
-            ->add('complemento', 'text', array('label' => 'Complemento'))
+            ->add('complemento', 'text', array('label' => 'Complemento',
+                'required'=>false
+            ))
         ;
     }
 

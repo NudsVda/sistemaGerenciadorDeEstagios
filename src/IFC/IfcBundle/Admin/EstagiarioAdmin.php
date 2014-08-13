@@ -21,10 +21,7 @@ class EstagiarioAdmin extends Admin{
             ->add('pessoa','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Pessoa',
                 'property'=>'nome',
-            ))
-            ->add('endereco','sonata_type_model',array(
-                'class' => 'IFC\IfcBundle\Entity\Endereco',
-                'property'=>'rua',
+                'label'=>'Estagiario'
             ))
             ->add('pai','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Pessoa',
@@ -66,10 +63,6 @@ class EstagiarioAdmin extends Admin{
             ->add('pessoa','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Pessoa',
                 'associated_property'=>'nome',
-            ))
-            ->add('endereco','sonata_type_model',array(
-                'class' => 'IFC\IfcBundle\Entity\Endereco',
-                'associated_property'=>'rua',
             ))
             ->add('pai','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Pessoa',

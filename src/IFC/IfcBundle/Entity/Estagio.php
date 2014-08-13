@@ -64,16 +64,6 @@ class Estagio
     private $horario;
 
     /**
-     * @var \Empresa
-     *
-     * @ORM\ManyToOne(targetEntity="Empresa")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
-     * })
-     */
-    private $empresa;
-
-    /**
      * @var \Estagiario
      *
      * @ORM\ManyToOne(targetEntity="Estagiario")
@@ -82,6 +72,16 @@ class Estagio
      * })
      */
     private $estagiario;
+
+    /**
+     * @var \Empresa
+     *
+     * @ORM\ManyToOne(targetEntity="Empresa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+     * })
+     */
+    private $empresa;
 
     /**
      * @var \Pessoa
@@ -254,29 +254,6 @@ class Estagio
     }
 
     /**
-     * Set empresa
-     *
-     * @param \IFC\IfcBundle\Entity\Empresa $empresa
-     * @return Estagio
-     */
-    public function setEmpresa(\IFC\IfcBundle\Entity\Empresa $empresa = null)
-    {
-        $this->empresa = $empresa;
-
-        return $this;
-    }
-
-    /**
-     * Get empresa
-     *
-     * @return \IFC\IfcBundle\Entity\Empresa 
-     */
-    public function getEmpresa()
-    {
-        return $this->empresa;
-    }
-
-    /**
      * Set estagiario
      *
      * @param \IFC\IfcBundle\Entity\Estagiario $estagiario
@@ -297,6 +274,29 @@ class Estagio
     public function getEstagiario()
     {
         return $this->estagiario;
+    }
+
+    /**
+     * Set empresa
+     *
+     * @param \IFC\IfcBundle\Entity\Empresa $empresa
+     * @return Estagio
+     */
+    public function setEmpresa(\IFC\IfcBundle\Entity\Empresa $empresa = null)
+    {
+        $this->empresa = $empresa;
+
+        return $this;
+    }
+
+    /**
+     * Get empresa
+     *
+     * @return \IFC\IfcBundle\Entity\Empresa 
+     */
+    public function getEmpresa()
+    {
+        return $this->empresa;
     }
 
     /**

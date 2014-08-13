@@ -16,7 +16,7 @@ class PessoaAdmin extends Admin
             ->add('nome', 'text', array('label' => 'Nome'))
             ->add('rg', 'text', array('label' => 'RG'))
             ->add('cpf', 'text', array('label' => 'CPF'))
-            ->add('data_nascimento', 'date', array('label' => 'Data nascimento'))
+            ->add('data_nascimento', "date", array('label' => 'Data nascimento','years'=>range(1902,2037)))
             ->add('formacao', 'text', array('label' => 'Formação'))
             ->add('endereco','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Endereco',
@@ -43,7 +43,7 @@ class PessoaAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('nome')
+            ->addIdentifier('name')
             ->add('formacao')
             ->add('contato','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Contato',
