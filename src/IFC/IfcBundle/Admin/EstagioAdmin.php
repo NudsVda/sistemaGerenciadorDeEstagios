@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class EstagioAdmin extends Admin
 {
@@ -38,12 +39,13 @@ class EstagioAdmin extends Admin
                 'property'=>'nome',
                 'label'=>'Superior'
             ))
-            ->add('remuneracao','number')
-            ->add('carga_horaria','integer')
-            ->add('inicio','datetime',array('years'=>range(2011,2037)))
-            ->add('final','datetime',array('years'=>range(2011,2037)))
-            ->add('status','text')
-            ->add('horario','text')
+            ->add('remunerado',NULL,array('label'=>"Remunerado?"))
+            ->add('remuneracao','number',array("required"=>false))
+            ->add('cargaHoraria','text')
+            ->add('inicio','date',array('years'=>range(2011,2037)))
+            ->add('final','date',array('years'=>range(2011,2037)))
+            ->add('status',NULL,array("label"=>"Andamento"))
+            ->add('horario',"text",array("label"=>"Horario de trabalho"))
         ;
     }
 
@@ -51,8 +53,10 @@ class EstagioAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            //->add('nome')
-            //->add('cpf')
+            ->add('estagiario.pessoa.nome',NULL,array('label'=>"Nome do estagiario"))
+            ->add('orientador.nome',NULL,array('label'=>"Nome do orientador"))
+            ->add('superior.nome',NULL,array('label'=>"Nome do superior"))
+            ->add('empresa.nome',NULL,array('label'=>"Empresa"))
         ;
     }
 
@@ -60,6 +64,7 @@ class EstagioAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier("id")
             ->add('estagiario','sonata_type_model',array(
                 'class' => 'IFC\IfcBundle\Entity\Estagiario',
                 'associated_property'=>'pessoa.nome'
@@ -81,12 +86,41 @@ class EstagioAdmin extends Admin
             ->add('inicio')
             ->add('final')
             ->add('status',NULL,array("label"=>"Andamento"))
-            ->add('horario')
+            ->add('horario',"text",array("label"=>"Horario de trabalho"))
             ->add('_action', 'actions', array(
                 'actions' => array(
+                    'show'=>array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
             ));
     }
+    protected function configureShowFields(ShowMapper $showMapper){
+        $showMapper
+            ->add('estagiario','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Estagiario',
+                'associated_property'=>'pessoa.nome'
+            ))
+            ->add('empresa','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Empresa',
+                'associated_property'=>'nome'
+            ))
+            ->add('orientador','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'associated_property'=>'nome'
+            ))
+            ->add('superior','sonata_type_model',array(
+                'class' => 'IFC\IfcBundle\Entity\Pessoa',
+                'associated_property'=>'nome'
+            ))
+            ->add('remunerado',NULL,array('label'=>"Remunerado?"))
+            ->add('remuneracao')
+            ->add('carga_horaria')
+            ->add('inicio')
+            ->add('final')
+            ->add('status',NULL,array("label"=>"Andamento"))
+            ->add('horario',"text",array("label"=>"Horario de trabalho"))
+            ;
+    }
+
 }

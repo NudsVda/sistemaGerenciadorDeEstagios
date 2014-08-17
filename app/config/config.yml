@@ -88,4 +88,6 @@ sonata_block:
         #sonata.media.block.gallery:
         #sonata.media.block.feature_media:
 
-
+sonata_admin:
+    title:      IFC
+    title_logo: /images/logo.png

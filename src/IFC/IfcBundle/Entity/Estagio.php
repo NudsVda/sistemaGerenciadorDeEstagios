@@ -64,14 +64,11 @@ class Estagio
     private $horario;
 
     /**
-     * @var \Estagiario
+     * @var boolean
      *
-     * @ORM\ManyToOne(targetEntity="Estagiario")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="estagiario_id", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="remunerado", type="boolean", nullable=true)
      */
-    private $estagiario;
+    private $remunerado;
 
     /**
      * @var \Empresa
@@ -82,6 +79,16 @@ class Estagio
      * })
      */
     private $empresa;
+
+    /**
+     * @var \Estagiario
+     *
+     * @ORM\ManyToOne(targetEntity="Estagiario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estagiario_id", referencedColumnName="id")
+     * })
+     */
+    private $estagiario;
 
     /**
      * @var \Pessoa
@@ -254,26 +261,26 @@ class Estagio
     }
 
     /**
-     * Set estagiario
+     * Set remunerado
      *
-     * @param \IFC\IfcBundle\Entity\Estagiario $estagiario
+     * @param boolean $remunerado
      * @return Estagio
      */
-    public function setEstagiario(\IFC\IfcBundle\Entity\Estagiario $estagiario = null)
+    public function setRemunerado($remunerado)
     {
-        $this->estagiario = $estagiario;
+        $this->remunerado = $remunerado;
 
         return $this;
     }
 
     /**
-     * Get estagiario
+     * Get remunerado
      *
-     * @return \IFC\IfcBundle\Entity\Estagiario 
+     * @return boolean 
      */
-    public function getEstagiario()
+    public function getRemunerado()
     {
-        return $this->estagiario;
+        return $this->remunerado;
     }
 
     /**
@@ -297,6 +304,29 @@ class Estagio
     public function getEmpresa()
     {
         return $this->empresa;
+    }
+
+    /**
+     * Set estagiario
+     *
+     * @param \IFC\IfcBundle\Entity\Estagiario $estagiario
+     * @return Estagio
+     */
+    public function setEstagiario(\IFC\IfcBundle\Entity\Estagiario $estagiario = null)
+    {
+        $this->estagiario = $estagiario;
+
+        return $this;
+    }
+
+    /**
+     * Get estagiario
+     *
+     * @return \IFC\IfcBundle\Entity\Estagiario 
+     */
+    public function getEstagiario()
+    {
+        return $this->estagiario;
     }
 
     /**

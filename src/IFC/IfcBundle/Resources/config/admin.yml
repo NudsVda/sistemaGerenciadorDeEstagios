@@ -1,4 +1,12 @@
 services:
+    sonata.admin.estagio:
+        class: IFC\IfcBundle\Admin\EstagioAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Estagio" }
+        arguments:
+            - ~
+            - IFC\IfcBundle\Entity\Estagio
+            - ~
     sonata.admin.areaAtuacao:
         class: IFC\IfcBundle\Admin\AreaAtuacaoAdmin
         tags:
@@ -47,14 +55,7 @@ services:
             - ~
             - IFC\IfcBundle\Entity\Estagiario
             - ~
-    sonata.admin.estagio:
-        class: IFC\IfcBundle\Admin\EstagioAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Estagio" }
-        arguments:
-            - ~
-            - IFC\IfcBundle\Entity\Estagio
-            - ~
+
 
     sonata.admin.modalidade:
         class: IFC\IfcBundle\Admin\ModalidadeAdmin

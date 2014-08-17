@@ -57,16 +57,11 @@ Estagio:
             length: 100
             fixed: false
             comment: ''
+        remunerado:
+            type: boolean
+            nullable: true
+            comment: ''
     manyToOne:
-        estagiario:
-            targetEntity: Estagiario
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                estagiario_id:
-                    referencedColumnName: id
-            orphanRemoval: false
         empresa:
             targetEntity: Empresa
             cascade: {  }
@@ -74,6 +69,15 @@ Estagio:
             inversedBy: null
             joinColumns:
                 empresa_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        estagiario:
+            targetEntity: Estagiario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                estagiario_id:
                     referencedColumnName: id
             orphanRemoval: false
         orientador:
